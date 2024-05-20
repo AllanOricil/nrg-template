@@ -1,0 +1,16 @@
+.github
+.husky
+.gitignore
+.eslintrc.json
+.eslintignore
+.prettierignore
+.npmrc
+assets
+images
+node_modules
+src
+jsconfig.json
+bitbucket-pipelines.yml
+commitlint.config.js
+esbuild.config.js
+

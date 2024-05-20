@@ -1,0 +1,54 @@
+{
+  "name": "@allanoricil/node-red-node-es-template",
+  "version": "1.0.0",
+  "description": "template to write node-red custom nodes using ES",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "author": {
+    "name": "AllanOricil",
+    "email": "allanoricil@duck.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node-red",
+    "es",
+    "esbuild"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier **/*.{js,json,html} --ignore-unknown",
+    "format:fix": "prettier **/*.{js,json,html} --write --ignore-unknown",
+    "prepare": "husky install",
+    "build": "node esbuild.config.js"
+  },
+  "lint-staged": {
+    "**/*.{json, html}": "prettier --write --ignore-unknown",
+    "**/*.{js}": [
+      "prettier --write --ignore-unknown",
+      "eslint --fix"
+    ]
+  },
+  "node-red": {
+    "nodes": {
+      "custom-nodes": "dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^12.1.0",
+    "esbuild": "^0.21.4",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.5",
+    "semantic-release": "^23.1.1"
+  },
+  "dependencies": {}
+}

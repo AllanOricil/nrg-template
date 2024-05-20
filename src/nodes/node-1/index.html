@@ -1,0 +1,24 @@
+<script type="text/x-red" data-template-name="node1">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i>Name </label>
+    <input type="text" id="node-input-name" placeholder="Name">
+    <span data-i18n="node1.name"></span>
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("node1", {
+    category: "custom nodes",
+    color: "#0284C7",
+    defaults: {
+      name: { value: "" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "icon.png",
+    align: "left",
+    label: function () {
+      return this.name || this._("node1.name") || "node-1";
+    },
+  });
+</script>
