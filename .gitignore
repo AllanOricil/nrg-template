@@ -1,8 +1,3 @@
-# These are some examples of commonly ignored file patterns.
-# You should customize this list as applicable to your project.
-# Learn more about .gitignore:
-#     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
-
 # Node artifact files
 node_modules/
 dist/
@@ -48,5 +43,9 @@ Thumbs.db
 *.mov
 *.wmv
 
-
-data-storage
+node-red/.npm
+node-red/node_modules
+node-red/.config.*
+node-red/.flows.json.backup
+node-red/lib/flows
+node-red/flows_cred.json
