@@ -63,6 +63,9 @@ async function bundleJS() {
   const packageJsonData = fs.readFileSync("./package.json", "utf-8");
   const { dependencies } = JSON.parse(packageJsonData);
 
+  // NOTE: bundling node-fetch with dist because it isnt avialable at runtime with node 18
+  delete dependencies["node-fetch"];
+
   await esbuild.build({
     entryPoints: ["src/index.js"],
     bundle: true,

@@ -21,7 +21,7 @@
     "format:fix": "prettier **/*.{js,json,html} --write --ignore-unknown",
     "prepare": "husky install",
     "build": "node esbuild.config.js",
-    "docker:compose:up": "npm run build && docker-compose -p node-red-custom-node-test up -d && docker exec node-red-custom-node-test sh -c 'cd /data && npm install /node-red-custom-node'",
+    "docker:compose:up": "npm run build && docker-compose -p node-red-custom-node-test up --force-recreate -d && docker exec node-red-custom-node-test sh -c 'cd /data && npm install /node-red-custom-node'",
     "docker:compose:down": "docker-compose -p node-red-custom-node-test down"
   },
   "lint-staged": {
@@ -52,5 +52,7 @@
     "prettier": "^3.2.5",
     "semantic-release": "^23.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }

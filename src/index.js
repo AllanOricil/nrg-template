@@ -1,7 +1,8 @@
-import node1 from "./nodes/node-1";
-import node2 from "./nodes/node-2";
+import createNodeMixin from "./helper";
+import { Node1, Node2 } from "@nodes";
 
 export default function (RED) {
-  node1(RED);
-  node2(RED);
+  const NodeMixin = createNodeMixin(RED);
+  RED.nodes.registerType("node1", NodeMixin(Node1));
+  RED.nodes.registerType("node2", NodeMixin(Node2));
 }
