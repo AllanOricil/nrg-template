@@ -1,6 +1,6 @@
 {
   "name": "@allanoricil/node-red-node-es-template",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "template to write node-red custom nodes using ES",
   "main": "dist/index.js",
   "type": "commonjs",
