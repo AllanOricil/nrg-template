@@ -1,4 +1,4 @@
-import Node from "src/node";
+import Node from "src/lib/node";
 
 export default class Node2 extends Node {
   constructor(config) {

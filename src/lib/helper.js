@@ -1,5 +1,5 @@
 // NOTE: the only purpose of this mixin is to ensure RED is available to the class scope. This could be solved at build time instead of runtime
-export default function createNodeRedNodeMixin(RED) {
+function createNodeRedNodeMixin(RED) {
   return function (BaseClass) {
     return class extends BaseClass {
       static RED = RED;
@@ -10,4 +10,11 @@ export default function createNodeRedNodeMixin(RED) {
       }
     };
   };
+}
+
+export function registerNodes(RED, nodes) {
+  const nodeRedNodeMixin = createNodeRedNodeMixin(RED);
+  for (const node of nodes) {
+    RED.nodes.registerType(node.name, nodeRedNodeMixin(node.class));
+  }
 }

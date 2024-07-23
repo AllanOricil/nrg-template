@@ -206,5 +206,205 @@
     "x": 710,
     "y": 420,
     "wires": [["0193b3d75bc7434b"]]
+  },
+  {
+    "id": "0cd24a34ce58ce0d",
+    "type": "inject",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 520,
+    "y": 480,
+    "wires": [["0699454ae12be17e"]]
+  },
+  {
+    "id": "321e3cf84a3e9b00",
+    "type": "inject",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 520,
+    "y": 540,
+    "wires": [["97bede1b4aca7c0e"]]
+  },
+  {
+    "id": "7d6c9a9c821d255a",
+    "type": "debug",
+    "z": "609f7f62a8fe88ae",
+    "name": "debug 5",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "78a7926dc00824b5",
+    "type": "debug",
+    "z": "609f7f62a8fe88ae",
+    "name": "debug 6",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "0699454ae12be17e",
+    "type": "node1",
+    "z": "609f7f62a8fe88ae",
+    "name": "node 1 - 1",
+    "x": 710,
+    "y": 480,
+    "wires": [["7d6c9a9c821d255a"]]
+  },
+  {
+    "id": "97bede1b4aca7c0e",
+    "type": "node2",
+    "z": "609f7f62a8fe88ae",
+    "name": "node 2 - 1",
+    "x": 710,
+    "y": 540,
+    "wires": [["78a7926dc00824b5"]]
+  },
+  {
+    "id": "c978a199ee0ba111",
+    "type": "inject",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 520,
+    "y": 600,
+    "wires": [["f3f42a249167fe3f"]]
+  },
+  {
+    "id": "ff57c9d7e5d658c8",
+    "type": "inject",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 520,
+    "y": 660,
+    "wires": [["e3c825da01bf83e2"]]
+  },
+  {
+    "id": "87de270bf9d77943",
+    "type": "debug",
+    "z": "609f7f62a8fe88ae",
+    "name": "debug 7",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 600,
+    "wires": []
+  },
+  {
+    "id": "d869ec403e9bf5ec",
+    "type": "debug",
+    "z": "609f7f62a8fe88ae",
+    "name": "debug 8",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 660,
+    "wires": []
+  },
+  {
+    "id": "f3f42a249167fe3f",
+    "type": "node1",
+    "z": "609f7f62a8fe88ae",
+    "name": "node 1 - 2",
+    "x": 710,
+    "y": 600,
+    "wires": [["87de270bf9d77943"]]
+  },
+  {
+    "id": "e3c825da01bf83e2",
+    "type": "node2",
+    "z": "609f7f62a8fe88ae",
+    "name": "node 2 - 2",
+    "x": 710,
+    "y": 660,
+    "wires": [["d869ec403e9bf5ec"]]
   }
 ]
