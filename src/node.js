@@ -4,13 +4,21 @@ export default class Node {
     console.log(config);
     console.log("parent");
 
+    // NOTE: this must be called before this.setupEventHanlders(), otherwise event handlers won't work
+    this.constructor.RED.nodes.createNode(this, config);
+
+    // NOTE: setup event handlers implemented by child Nodes
+    this.setupEventHandlers();
+
+    console.log(this);
+
+    console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(this)));
+
     // NOTE: add anything that has to be available to all nodes
-    // NOTE: I cant call RED.nodes.createNode(this, config); here because it is not available, that is why I do it in the mixin, at runtime. The only purpose of this class it to serve as a template for child nodes.
-    // NOTE: child classes implement setupEventHandlers for now but I think I can handle it here, or in the future at build time
   }
 
   setupEventHandlers() {
-    console.warn("setupEventHandlers() not implemented in this node.");
+    throw new Error("setupEventHandlers() not implemented in this node.");
   }
 
   /* eslint-disable no-unused-vars */
