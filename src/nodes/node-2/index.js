@@ -6,12 +6,6 @@ export default class Node2 extends Node {
     console.log("constructed node 2");
   }
 
-  // NOTE: in the future I plan to make the parent register event handlers automatically
-  setupEventHandlers() {
-    this.on("input", this.onInput);
-    this.on("close", this.onClose);
-  }
-
   onInput(msg) {
     console.log("node-2 on input", msg.payload);
 

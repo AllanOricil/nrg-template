@@ -1,4 +1,4 @@
-// NOTE: we could make this class simulate an abstract using just js, however in ts is easier. Therefore, I'm not doing it here
+// NOTE: we could make this class simulate a true abstract class at runtime using js only. However, it is way easier to do it using ts. Therefore, I'm not doing it here.
 export default class Node {
   constructor(config) {
     console.log(config);
@@ -7,18 +7,7 @@ export default class Node {
     // NOTE: this must be called before this.setupEventHanlders(), otherwise event handlers won't work
     this.constructor.RED.nodes.createNode(this, config);
 
-    // NOTE: setup event handlers implemented by child Nodes
-    this.setupEventHandlers();
-
-    console.log(this);
-
-    console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(this)));
-
     // NOTE: add anything that has to be available to all nodes
-  }
-
-  setupEventHandlers() {
-    throw new Error("setupEventHandlers() not implemented in this node.");
   }
 
   /* eslint-disable no-unused-vars */

@@ -1,1 +1,1 @@
-This lib contains a kind of core framework to ensure nodes follow a certain pattern
+This lib contains a runtime framework to ensure nodes follow a certain pattern.
