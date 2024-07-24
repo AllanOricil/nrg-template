@@ -59,3 +59,8 @@ node-red-node-es-template/
 4. open your browser
 5. navigate to `http://localhost:1880`
 6. verify that the pallete contains the nodes you are developing in these repository
+
+## 📝 TODO
+
+- create a compiler to generate the html for i18n help text based on markdown
+- create a compiler for bundling the node's client side js and generate the final client side html
