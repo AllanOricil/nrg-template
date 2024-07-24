@@ -28,8 +28,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 240,
+    "x": 220,
+    "y": 80,
     "wires": [["2cdfa65c7a2c3be2"]]
   },
   {
@@ -53,8 +53,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 300,
+    "x": 220,
+    "y": 140,
     "wires": [["ee8d2971740ab3ca"]]
   },
   {
@@ -69,8 +69,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 240,
+    "x": 620,
+    "y": 80,
     "wires": []
   },
   {
@@ -85,8 +85,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 300,
+    "x": 620,
+    "y": 140,
     "wires": []
   },
   {
@@ -94,8 +94,8 @@
     "type": "node1",
     "z": "609f7f62a8fe88ae",
     "name": "node 1 - 1",
-    "x": 710,
-    "y": 240,
+    "x": 430,
+    "y": 80,
     "wires": [["385af499a71a2196"]]
   },
   {
@@ -103,8 +103,8 @@
     "type": "node2",
     "z": "609f7f62a8fe88ae",
     "name": "node 2 - 1",
-    "x": 710,
-    "y": 300,
+    "x": 430,
+    "y": 140,
     "wires": [["a0763e42f26f1e7d"]]
   },
   {
@@ -128,8 +128,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 360,
+    "x": 220,
+    "y": 200,
     "wires": [["c58df71482d5b0c0"]]
   },
   {
@@ -153,8 +153,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 420,
+    "x": 220,
+    "y": 260,
     "wires": [["d6f117a226e2e0ea"]]
   },
   {
@@ -169,8 +169,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 360,
+    "x": 620,
+    "y": 200,
     "wires": []
   },
   {
@@ -185,8 +185,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 420,
+    "x": 620,
+    "y": 260,
     "wires": []
   },
   {
@@ -194,8 +194,8 @@
     "type": "node1",
     "z": "609f7f62a8fe88ae",
     "name": "node 1 - 2",
-    "x": 710,
-    "y": 360,
+    "x": 430,
+    "y": 200,
     "wires": [["779914af6f1ef673"]]
   },
   {
@@ -203,8 +203,8 @@
     "type": "node2",
     "z": "609f7f62a8fe88ae",
     "name": "node 2 - 2",
-    "x": 710,
-    "y": 420,
+    "x": 430,
+    "y": 260,
     "wires": [["0193b3d75bc7434b"]]
   },
   {
@@ -228,8 +228,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 480,
+    "x": 220,
+    "y": 320,
     "wires": [["0699454ae12be17e"]]
   },
   {
@@ -253,8 +253,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 540,
+    "x": 220,
+    "y": 380,
     "wires": [["97bede1b4aca7c0e"]]
   },
   {
@@ -269,8 +269,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 480,
+    "x": 620,
+    "y": 320,
     "wires": []
   },
   {
@@ -285,8 +285,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 540,
+    "x": 620,
+    "y": 380,
     "wires": []
   },
   {
@@ -294,8 +294,8 @@
     "type": "node1",
     "z": "609f7f62a8fe88ae",
     "name": "node 1 - 1",
-    "x": 710,
-    "y": 480,
+    "x": 430,
+    "y": 320,
     "wires": [["7d6c9a9c821d255a"]]
   },
   {
@@ -303,8 +303,8 @@
     "type": "node2",
     "z": "609f7f62a8fe88ae",
     "name": "node 2 - 1",
-    "x": 710,
-    "y": 540,
+    "x": 430,
+    "y": 380,
     "wires": [["78a7926dc00824b5"]]
   },
   {
@@ -328,8 +328,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 600,
+    "x": 220,
+    "y": 440,
     "wires": [["f3f42a249167fe3f"]]
   },
   {
@@ -353,8 +353,8 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 520,
-    "y": 660,
+    "x": 220,
+    "y": 500,
     "wires": [["e3c825da01bf83e2"]]
   },
   {
@@ -369,8 +369,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 600,
+    "x": 620,
+    "y": 440,
     "wires": []
   },
   {
@@ -385,8 +385,8 @@
     "complete": "false",
     "statusVal": "",
     "statusType": "auto",
-    "x": 880,
-    "y": 660,
+    "x": 620,
+    "y": 500,
     "wires": []
   },
   {
@@ -394,8 +394,8 @@
     "type": "node1",
     "z": "609f7f62a8fe88ae",
     "name": "node 1 - 2",
-    "x": 710,
-    "y": 600,
+    "x": 430,
+    "y": 440,
     "wires": [["87de270bf9d77943"]]
   },
   {
@@ -403,8 +403,8 @@
     "type": "node2",
     "z": "609f7f62a8fe88ae",
     "name": "node 2 - 2",
-    "x": 710,
-    "y": 660,
+    "x": 430,
+    "y": 500,
     "wires": [["d869ec403e9bf5ec"]]
   }
 ]
