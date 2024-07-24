@@ -35,5 +35,10 @@ export default class Node {
     console.warn("onConfig() not implemented in this node.");
   }
 
+  // NOTE: this is the type that is used to register a node
+  static get type() {
+    return this.name.toLocaleLowerCase();
+  }
+
   // NOTE: add other event handlers here
 }

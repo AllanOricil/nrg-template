@@ -2,7 +2,6 @@ import Node from "src/lib/node";
 import fetch from "node-fetch";
 
 export default class Node1 extends Node {
-  // TODO: enforce node type declaration so that registerNodes, from src/lib/node, can be simplified to registerNodes(RED, [Node1, Node2])
   constructor(config) {
     super(config);
     console.log("constructed node 1");

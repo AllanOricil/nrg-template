@@ -49,6 +49,11 @@ function createNodeRedNodeMixin(RED) {
 export function registerNodes(RED, nodes) {
   const nodeRedNodeMixin = createNodeRedNodeMixin(RED);
   for (const node of nodes) {
-    RED.nodes.registerType(node.name, nodeRedNodeMixin(node.class));
+    if (!node.type) {
+      throw new Error(
+        `${node.name} must declare its type as a static prop called type`,
+      );
+    }
+    RED.nodes.registerType(node.type, nodeRedNodeMixin(node));
   }
 }
