@@ -2,6 +2,10 @@ import Node from "./node";
 // NOTE: this mixin ensures RED is available to the class scope. It also registers event handlers automatically
 function createNodeRedNodeMixin(RED) {
   return function (BaseClass) {
+    if (!(BaseClass.prototype instanceof Node)) {
+      throw new Error(`${BaseClass.name} must extend Node`);
+    }
+
     // NOTE: this is a definition to ensure event handler methods can be identified
     const EVENT_HANDLER_PREFIX_RESERVED_WORD = "on";
 
