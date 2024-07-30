@@ -1,4 +1,4 @@
-import Node from "src/lib/node";
+import { Node } from "@allanoricil/node-red-node";
 import fetch from "node-fetch";
 
 export default class Node1 extends Node {

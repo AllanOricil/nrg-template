@@ -1,4 +1,4 @@
-import { registerNodes } from "src/lib/helper";
+import { registerNodes } from "@allanoricil/node-red-node";
 import { Node1, Node2 } from "@nodes";
 
 export default function (RED) {

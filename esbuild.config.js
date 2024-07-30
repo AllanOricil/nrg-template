@@ -71,6 +71,10 @@ async function bundleJS() {
     bundle: true,
     platform: "node",
     format: "cjs",
+    minify: true,
+    // NOTE: this must be true so that class names are preserved.
+    // NOTE: this prop doesnt work unless minify = true
+    keepNames: true,
     outfile: path.join(DIST_FOLDER, "index.js"),
     external: Object.keys(dependencies),
     sourcemap: true,

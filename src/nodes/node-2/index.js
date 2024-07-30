@@ -1,4 +1,4 @@
-import Node from "src/lib/node";
+import { Node } from "@allanoricil/node-red-node";
 
 export default class Node2 extends Node {
   constructor(config) {

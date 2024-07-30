@@ -8,5 +8,6 @@
       "@nodes": ["./src/nodes"]
     }
   },
+  "exclude": ["node_modules"],
   "include": ["src/**/*"]
 }
