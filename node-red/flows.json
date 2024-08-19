@@ -30,7 +30,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 80,
-    "wires": [["2cdfa65c7a2c3be2"]]
+    "wires": [["a669ac652deb8d37"]]
   },
   {
     "id": "d5ca4bd3e6c30a3c",
@@ -55,7 +55,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 140,
-    "wires": [["ee8d2971740ab3ca"]]
+    "wires": [["46f1d7145f132f3e"]]
   },
   {
     "id": "385af499a71a2196",
@@ -90,24 +90,6 @@
     "wires": []
   },
   {
-    "id": "2cdfa65c7a2c3be2",
-    "type": "node1",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 1 - 1",
-    "x": 430,
-    "y": 80,
-    "wires": [["385af499a71a2196"]]
-  },
-  {
-    "id": "ee8d2971740ab3ca",
-    "type": "node2",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 2 - 1",
-    "x": 430,
-    "y": 140,
-    "wires": [["a0763e42f26f1e7d"]]
-  },
-  {
     "id": "a3c43e110d3e3920",
     "type": "inject",
     "z": "609f7f62a8fe88ae",
@@ -130,7 +112,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 200,
-    "wires": [["c58df71482d5b0c0"]]
+    "wires": [["52e9fef802b16402"]]
   },
   {
     "id": "3c8fb3f8a08b529f",
@@ -155,7 +137,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 260,
-    "wires": [["d6f117a226e2e0ea"]]
+    "wires": [["17bd37857ff688ee"]]
   },
   {
     "id": "779914af6f1ef673",
@@ -190,24 +172,6 @@
     "wires": []
   },
   {
-    "id": "c58df71482d5b0c0",
-    "type": "node1",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 1 - 2",
-    "x": 430,
-    "y": 200,
-    "wires": [["779914af6f1ef673"]]
-  },
-  {
-    "id": "d6f117a226e2e0ea",
-    "type": "node2",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 2 - 2",
-    "x": 430,
-    "y": 260,
-    "wires": [["0193b3d75bc7434b"]]
-  },
-  {
     "id": "0cd24a34ce58ce0d",
     "type": "inject",
     "z": "609f7f62a8fe88ae",
@@ -230,7 +194,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 320,
-    "wires": [["0699454ae12be17e"]]
+    "wires": [["f71480b52a028b87"]]
   },
   {
     "id": "321e3cf84a3e9b00",
@@ -255,7 +219,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 380,
-    "wires": [["97bede1b4aca7c0e"]]
+    "wires": [["ec8bca8af2e0b653"]]
   },
   {
     "id": "7d6c9a9c821d255a",
@@ -290,24 +254,6 @@
     "wires": []
   },
   {
-    "id": "0699454ae12be17e",
-    "type": "node1",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 1 - 1",
-    "x": 430,
-    "y": 320,
-    "wires": [["7d6c9a9c821d255a"]]
-  },
-  {
-    "id": "97bede1b4aca7c0e",
-    "type": "node2",
-    "z": "609f7f62a8fe88ae",
-    "name": "node 2 - 1",
-    "x": 430,
-    "y": 380,
-    "wires": [["78a7926dc00824b5"]]
-  },
-  {
     "id": "c978a199ee0ba111",
     "type": "inject",
     "z": "609f7f62a8fe88ae",
@@ -330,7 +276,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 440,
-    "wires": [["f3f42a249167fe3f"]]
+    "wires": [[]]
   },
   {
     "id": "ff57c9d7e5d658c8",
@@ -355,7 +301,7 @@
     "payloadType": "date",
     "x": 220,
     "y": 500,
-    "wires": [["e3c825da01bf83e2"]]
+    "wires": [[]]
   },
   {
     "id": "87de270bf9d77943",
@@ -390,21 +336,57 @@
     "wires": []
   },
   {
-    "id": "f3f42a249167fe3f",
-    "type": "node1",
+    "id": "a669ac652deb8d37",
+    "type": "node-1",
     "z": "609f7f62a8fe88ae",
-    "name": "node 1 - 2",
+    "name": "",
     "x": 430,
-    "y": 440,
-    "wires": [["87de270bf9d77943"]]
+    "y": 80,
+    "wires": [["385af499a71a2196"]]
   },
   {
-    "id": "e3c825da01bf83e2",
-    "type": "node2",
+    "id": "46f1d7145f132f3e",
+    "type": "node-2",
     "z": "609f7f62a8fe88ae",
-    "name": "node 2 - 2",
+    "name": "",
     "x": 430,
-    "y": 500,
-    "wires": [["d869ec403e9bf5ec"]]
+    "y": 140,
+    "wires": [["a0763e42f26f1e7d"]]
+  },
+  {
+    "id": "52e9fef802b16402",
+    "type": "node-2",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "x": 430,
+    "y": 200,
+    "wires": [["779914af6f1ef673"]]
+  },
+  {
+    "id": "17bd37857ff688ee",
+    "type": "node-1",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "x": 430,
+    "y": 260,
+    "wires": [["0193b3d75bc7434b"]]
+  },
+  {
+    "id": "f71480b52a028b87",
+    "type": "node-1",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "x": 430,
+    "y": 320,
+    "wires": [["7d6c9a9c821d255a"]]
+  },
+  {
+    "id": "ec8bca8af2e0b653",
+    "type": "node-1",
+    "z": "609f7f62a8fe88ae",
+    "name": "",
+    "x": 430,
+    "y": 380,
+    "wires": [["78a7926dc00824b5"]]
   }
 ]

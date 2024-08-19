@@ -1,0 +1,12 @@
+import { createNodeRedNodeMixin } from "@allanoricil/node-red-node";
+
+{{#each nodes}}
+import {{this.name}} from "{{this.path}}";
+{{/each}}
+
+export default function (RED) {
+	const NodeRedNodeMixin = createNodeRedNodeMixin(RED);
+	{{#each nodes}}
+	RED.nodes.registerType("{{this.id}}", NodeRedNodeMixin({{this.name}}));
+	{{/each}}
+}

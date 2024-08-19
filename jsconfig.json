@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "moduleResolution": "Node",
     "module": "esnext",
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@nodes": ["./src/nodes"]
+      "@nodes/": ["./src/nodes"]
     }
   },
   "exclude": ["node_modules"],

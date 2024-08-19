@@ -3,4 +3,5 @@ node_modules
 assets
 dist
 commitlint.config.js
-esbuild.config.mjs
+builder.js
+.node-red-builder

@@ -6,40 +6,58 @@
 
 ```bash
 node-red-node-es-template/
-├── assets/
-│   ├── icons/
-│   │   └── icon.png
-│   └── locales/
-│       ├── de/
-│       │   ├── index.hmtl
-│       │   └── index.json
-│       └── en-US/
-│           ├── index.html
-│           └── index.json
-├── dist/
-│   ├── icons/
-│   │   └── icon.png
-│   ├── locales/
-│   │   ├── de/
-│   │   │   ├── index.hmtl
-│   │   │   └── index.json
-│   │   └── en-US/
-│   │       ├── index.html
-│   │       └── index.json
-│   ├── index.html
-│   ├── index.js
-│   └── index.js.map
-├── src/
-│   ├── nodes/
-│   │   ├── node-1/
-│   │   │   ├── index.js
-│   │   │   └── index.html
-│   │   └── node-2/
-│   │       ├── index.js
-│   │       └── index.html
-│   └── index.js
-├── package.json
-└── package-lock.json
+└── src/
+    └── nodes/
+        ├── node-1/
+        │   ├── client/
+        │   │   ├── i18n/
+        │   │   │   ├── dictionaries/
+        │   │   │   │   ├── de.json
+        │   │   │   │   └── en-US.json
+        │   │   │   └── docs/
+        │   │   │       ├── de.html
+        │   │   │       └── en-US.html
+        │   │   ├── icons/
+        │   │   │   └── icon-1.png
+        │   │   ├── index.html
+        │   │   └── index.js
+        │   └── server/
+        │       └── index.js
+        └── node-2/
+            ├── client/
+            │   ├── i18n/
+            │   │   ├── dictionaries/
+            │   │   │   ├── de.json
+            │   │   │   └── en-US.json
+            │   │   └── docs/
+            │   │       ├── de.html
+            │   │       └── en-US.html
+            │   ├── icons/
+            │   │   └── icon-2.png
+            │   ├── index.html
+            │   └── index.js
+            └── server/
+                └── index.js
+```
+
+### dist
+
+```bash
+node-red-node-es-template/
+└── dist/
+    ├── icons/
+    │   ├── icon-1.png
+    │   └── icon-2.png
+    ├── locales/
+    │   ├── de/
+    │   │   ├── index.html
+    │   │   └── index.json
+    │   └── en-US/
+    │       ├── index.html
+    │       └── index.json
+    ├── index.html
+    ├── index.js.map
+    └── index.js
 ```
 
 ## 💻 Dev Environment Requirements
@@ -58,9 +76,4 @@ node-red-node-es-template/
 3. run `npm run docker:compose:up`
 4. open your browser
 5. navigate to `http://localhost:1880`
-6. verify that the pallete contains the nodes you are developing in these repository
-
-## 📝 TODO
-
-- create a compiler to generate the html for i18n help text based on markdown
-- create a compiler for bundling the node's client side js and generate the final client side html
+6. verify that these nodes are available in the pallete

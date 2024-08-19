@@ -49,3 +49,5 @@ node-red/.config.*
 node-red/.flows.json.backup
 node-red/lib/flows
 node-red/flows_cred.json
+
+.node-red-builder
