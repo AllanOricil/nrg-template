@@ -3,6 +3,7 @@ const path = require("path");
 const esbuild = require("esbuild");
 const Handlebars = require("handlebars");
 const deepmerge = require("deepmerge");
+const cheerio = require("cheerio");
 
 const BUNDLER_FOLDER = "./.node-red-builder";
 const BUNDLER_TMP_FOLDER = path.join(BUNDLER_FOLDER, "tmp");
@@ -39,6 +40,24 @@ async function setup() {
   await fs.mkdirp(BUNDLER_FOLDER);
   await fs.mkdirp(BUNDLER_TMP_FOLDER);
   console.log("setup complete");
+}
+
+async function processHtml(node){
+  const html = fs.readFileSync(
+    path.resolve(
+      BUNDLER_CLIENT_TMP_SRC_FOLDER,
+      "nodes",
+      node,
+      "client",
+      "index.html"
+    ),
+    { encoding: "utf-8" }
+  );
+  const $ = cheerio.load(html, null, false);
+  const templateContent = $('template').html();
+  const newDiv = `<div id="${node}">${templateContent}</div>`;
+  $('template').replaceWith(newDiv);
+  return $.html();
 }
 
 async function bundleJavascript(config) {
@@ -95,7 +114,7 @@ async function bundleServer() {
       // NOTE: this prop doesnt work unless minify = true
       keepNames: true,
       outfile: path.resolve(BUNDLER_TMP_DIST_FOLDER, "index.js"),
-      sourcemap: true,
+      // sourcemap: true,
     }
   );
 
@@ -109,11 +128,6 @@ async function bundleClient() {
 
   const nodes = fs.readdirSync(
     path.resolve(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes")
-  );
-
-  const renderedClientHtmlOutput = path.join(
-    BUNDLER_TMP_DIST_FOLDER,
-    "index.html"
   );
 
   const template = Handlebars.compile(
@@ -164,24 +178,14 @@ async function bundleClient() {
         // NOTE: this prop doesnt work unless minify = true
         keepNames: true,
         outfile: jsOutputPath,
-        sourcemap: "inline",
+        // sourcemap: "inline",
         allowOverwrite: true,
       }
     );
 
     const js = fs.readFileSync(jsOutputPath, { encoding: "utf-8" });
     
-
-    const html = fs.readFileSync(
-      path.resolve(
-        BUNDLER_CLIENT_TMP_SRC_FOLDER,
-        "nodes",
-        node,
-        "client",
-        "index.html"
-      ),
-      { encoding: "utf-8" }
-    );
+    const html = await processHtml(node);
 
     const renderedClientHtml =
       template({
@@ -190,7 +194,10 @@ async function bundleClient() {
         JAVASCRIPT: js.trim(),
       }) + "\n";
 
-    fs.appendFileSync(renderedClientHtmlOutput, renderedClientHtml, {
+    fs.appendFileSync(path.join(
+      BUNDLER_TMP_DIST_FOLDER,
+      "index.html"
+    ), renderedClientHtml, {
       encoding: "utf-8",
     });
   }
