@@ -58,7 +58,7 @@
     "semantic-release": "^23.1.1"
   },
   "dependencies": {
-    "is-odd": "^3.0.1",
-    "node-fetch": "^3.3.2"
+    "axios": "^1.7.5",
+    "is-odd": "^3.0.1"
   }
 }

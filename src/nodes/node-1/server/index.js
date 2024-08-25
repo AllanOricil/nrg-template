@@ -1,5 +1,5 @@
 import { Node } from "@allanoricil/node-red-node";
-import fetch from "node-fetch";
+import axios from "axios";
 
 export default class Node1 extends Node {
   constructor(config) {
@@ -10,25 +10,20 @@ export default class Node1 extends Node {
   // NOTE: example showing how to use async/await
   async onInput(msg, send, done) {
     try {
-      console.log("node-1 on input", msg.payload);
       this.status({
         fill: "blue",
         shape: "ring",
         text: "fetching data",
       });
-      const response = await fetch("https://dog.ceo/api/breeds/image/random");
+      const response = await axios.get(
+        "https://dog.ceo/api/breeds/image/random",
+      );
       this.status({
         fill: "green",
         shape: "dot",
         text: "success",
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-
-      send({ payload: data });
-
+      send({ payload: response.data });
       done();
     } catch (error) {
       this.status({

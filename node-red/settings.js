@@ -257,7 +257,7 @@ module.exports = {
    * Available languages include: en-US (default), ja, de, zh-CN, zh-TW, ru, ko
    * Some languages are more complete than others.
    */
-  // lang: "de",
+  lang: "de",
 
   /** Configure diagnostics options
    * - enabled:  When `enabled` is `true` (or unset), diagnostics data will
