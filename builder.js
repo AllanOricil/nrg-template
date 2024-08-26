@@ -4,6 +4,7 @@ const esbuild = require("esbuild");
 const Handlebars = require("handlebars");
 const deepmerge = require("deepmerge");
 const cheerio = require("cheerio");
+const vuePlugin = require('esbuild-vue');
 
 const BUNDLER_FOLDER = "./.node-red-builder";
 const BUNDLER_TMP_FOLDER = path.join(BUNDLER_FOLDER, "tmp");
@@ -179,6 +180,7 @@ async function bundleClient() {
         minify: true,
         sourcemap: "inline",
         allowOverwrite: true,
+        plugins: [vuePlugin()]
       }
     );
 

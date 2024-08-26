@@ -1,5 +1,5 @@
 import isOdd from "is-odd";
-import { app } from "./vue/app";
+import { startApp } from "./vue/app";
 
 isOdd("1");
 
@@ -20,6 +20,6 @@ export default {
     return this.name || this._("node-1.test.test") || "node-1";
   },
   oneditprepare: function () {
-    app(this.type);
+    startApp(this.type);
   },
 };
