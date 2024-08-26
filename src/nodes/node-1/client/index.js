@@ -1,4 +1,5 @@
 import isOdd from "is-odd";
+import { app } from "./vue/app";
 
 isOdd("1");
 
@@ -17,5 +18,8 @@ export default {
   },
   label: function () {
     return this.name || this._("node-1.test.test") || "node-1";
+  },
+  oneditprepare: function () {
+    app(this.type);
   },
 };

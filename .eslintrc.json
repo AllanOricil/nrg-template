@@ -16,6 +16,7 @@
     "RED": true,
     "$": "readonly",
     "document": "readonly",
-    "window": "readonly"
+    "window": "readonly",
+    "Vue": "readonly"
   }
 }
