@@ -173,12 +173,9 @@ async function bundleClient() {
         bundle: true,
         platform: "browser",
         target: ["es2015"],
-        minify: true,
-        // NOTE: this must be true so that class names are preserved.
-        // NOTE: this prop doesnt work unless minify = true
-        keepNames: true,
         outfile: jsOutputPath,
-        // sourcemap: "inline",
+        keepNames: true,
+        sourcemap: "inline",
         allowOverwrite: true,
       }
     );
