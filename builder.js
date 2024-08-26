@@ -176,6 +176,7 @@ async function bundleClient() {
         target: ["es2020"],
         outfile: jsOutputPath,
         keepNames: true,
+        minify: true,
         sourcemap: "inline",
         allowOverwrite: true,
       }
