@@ -171,8 +171,9 @@ async function bundleClient() {
           "index.js"
         )],
         bundle: true,
+        format: "iife",
         platform: "browser",
-        target: ["es2015"],
+        target: ["es2020"],
         outfile: jsOutputPath,
         keepNames: true,
         sourcemap: "inline",
