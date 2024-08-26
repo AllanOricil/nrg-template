@@ -1,20 +1,27 @@
 import { loadVue } from "./utils";
 import Hello from "./components/hello.vue";
 
-function startApp(node) {
-  loadVue(
-    node.type,
-    () =>
-      new Vue({
-        el: "#vue-app",
-        render: (h) =>
-          h(Hello, {
-            props: {
-              nodeData: node,
-            },
-          }),
-      }),
-  );
+let vueInstance = null;
+
+function mountApp(node) {
+  loadVue(node.type, () => {
+    vueInstance = new Vue({
+      el: "#vue-app",
+      render: (h) =>
+        h(Hello, {
+          props: {
+            nodeData: node,
+          },
+        }),
+    });
+  });
 }
 
-export { startApp };
+function destroyApp() {
+  if (vueInstance) {
+    vueInstance.$destroy(); // Destroy the Vue instance
+    vueInstance = null; // Clear the reference to the Vue instance
+  }
+}
+
+export { mountApp, destroyApp };

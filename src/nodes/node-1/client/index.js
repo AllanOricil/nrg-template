@@ -1,5 +1,5 @@
 import isOdd from "is-odd";
-import { startApp } from "./vue/app";
+import { mountApp, destroyApp } from "./vue/app";
 
 isOdd("1");
 
@@ -20,6 +20,12 @@ export default {
     return this.name || this._("node-1.test.test") || "node-1";
   },
   oneditprepare: function () {
-    startApp(this);
+    mountApp(this);
+  },
+  oneditcancel: function () {
+    destroyApp(this);
+  },
+  oneditdelete: function () {
+    destroyApp(this);
   },
 };
