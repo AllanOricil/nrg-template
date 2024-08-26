@@ -20,6 +20,6 @@ export default {
     return this.name || this._("node-1.test.test") || "node-1";
   },
   oneditprepare: function () {
-    startApp(this.type);
+    startApp(this);
   },
 };
