@@ -7,4 +7,6 @@ package.json
 package-lock.json
 .node-red-builder
 builder.js
-builder
+!builder/scripts/*.mjs
+builder/templates
+
