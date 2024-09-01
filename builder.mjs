@@ -1,10 +1,10 @@
-const fs = require("fs-extra");
-const path = require("path");
-const esbuild = require("esbuild");
-const Handlebars = require("handlebars");
-const deepmerge = require("deepmerge");
-const cheerio = require("cheerio");
-const vuePlugin = require('esbuild-vue');
+import fs from "fs-extra";
+import path from "path";
+import esbuild from "esbuild";
+import Handlebars from "handlebars";
+import deepmerge from "deepmerge";
+import * as cheerio from "cheerio";
+import vuePlugin from "esbuild-vue";
 
 const BUNDLER_FOLDER = "./.node-red-builder";
 const BUNDLER_TMP_FOLDER = path.join(BUNDLER_FOLDER, "tmp");
@@ -43,7 +43,7 @@ async function setup() {
   console.log("setup complete");
 }
 
-async function processHtml(node){
+async function processHtml(node) {
   const html = fs.readFileSync(
     path.resolve(
       BUNDLER_CLIENT_TMP_SRC_FOLDER,
@@ -55,9 +55,9 @@ async function processHtml(node){
     { encoding: "utf-8" }
   );
   const $ = cheerio.load(html, null, false);
-  const templateContent = $('template').html();
+  const templateContent = $("template").html();
   const newDiv = `<div id="${node}">${templateContent}</div>`;
-  $('template').replaceWith(newDiv);
+  $("template").replaceWith(newDiv);
   return $.html();
 }
 
@@ -104,20 +104,18 @@ async function bundleServer() {
     encoding: "utf-8",
   });
 
-  await bundleJavascript(
-    {
-      entryPoints: [serverEntrypointPath],
-      bundle: true,
-      platform: "node",
-      format: "cjs",
-      minify: false,
-      // NOTE: this must be true so that class names are preserved.
-      // NOTE: this prop doesnt work unless minify = true
-      keepNames: true,
-      outfile: path.resolve(BUNDLER_TMP_DIST_FOLDER, "index.js"),
-      // sourcemap: true,
-    }
-  );
+  await bundleJavascript({
+    entryPoints: [serverEntrypointPath],
+    bundle: true,
+    platform: "node",
+    format: "cjs",
+    minify: false,
+    // NOTE: this must be true so that class names are preserved.
+    // NOTE: this prop doesnt work unless minify = true
+    keepNames: true,
+    outfile: path.resolve(BUNDLER_TMP_DIST_FOLDER, "index.js"),
+    sourcemap: true,
+  });
 
   console.log("server bundled");
 }
@@ -136,8 +134,11 @@ async function bundleClient() {
   );
 
   const entryPointTemplate = Handlebars.compile(
-    fs.readFileSync(path.join(TEMPLATES, "client", "entrypoint.handlebars"), "utf-8")
-  )
+    fs.readFileSync(
+      path.join(TEMPLATES, "client", "entrypoint.handlebars"),
+      "utf-8"
+    )
+  );
 
   for (const node of nodes) {
     const jsOutputPath = path.join(
@@ -149,45 +150,37 @@ async function bundleClient() {
 
     const renderedJsEntrypoint = entryPointTemplate({
       path: "./" + path.join("client", "index.js"),
-      type: node
-    })
+      type: node,
+    });
 
     fs.writeFileSync(
-      path.join(
-        BUNDLER_CLIENT_TMP_SRC_FOLDER,
-        "nodes",
-        node,
-        "index.js"
-      ), 
-      renderedJsEntrypoint, 
-      { encoding: "utf-8"}
-    )
-
-    await bundleJavascript(
-      {
-        entryPoints: [path.resolve(
-          BUNDLER_CLIENT_TMP_SRC_FOLDER,
-          "nodes",
-          node,
-          "index.js"
-        )],
-        bundle: true,
-        format: "iife",
-        platform: "browser",
-        target: ["es2020"],
-        outfile: jsOutputPath,
-        keepNames: true,
-        minify: true,
-        sourcemap: "inline",
-        allowOverwrite: true,
-        plugins: [vuePlugin({
-          production: true
-        })]
-      }
+      path.join(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes", node, "index.js"),
+      renderedJsEntrypoint,
+      { encoding: "utf-8" }
     );
 
+    await bundleJavascript({
+      entryPoints: [
+        path.resolve(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes", node, "index.js"),
+      ],
+      bundle: true,
+      format: "iife",
+      platform: "browser",
+      target: ["es2020"],
+      outfile: jsOutputPath,
+      keepNames: true,
+      minify: true,
+      sourcemap: "inline",
+      allowOverwrite: true,
+      plugins: [
+        vuePlugin({
+          production: true,
+        }),
+      ],
+    });
+
     const js = fs.readFileSync(jsOutputPath, { encoding: "utf-8" });
-    
+
     const html = await processHtml(node);
 
     const renderedClientHtml =
@@ -197,12 +190,13 @@ async function bundleClient() {
         javascript: js.trim(),
       }) + "\n";
 
-    fs.appendFileSync(path.join(
-      BUNDLER_TMP_DIST_FOLDER,
-      "index.html"
-    ), renderedClientHtml, {
-      encoding: "utf-8",
-    });
+    fs.appendFileSync(
+      path.join(BUNDLER_TMP_DIST_FOLDER, "index.html"),
+      renderedClientHtml,
+      {
+        encoding: "utf-8",
+      }
+    );
   }
 
   console.log("client bundled");
@@ -320,7 +314,12 @@ const main = async () => {
   try {
     await clean();
     await setup();
-    await Promise.all([bundleServer(), bundleClient(), bundleIcons(), bundleLocales()]);
+    await Promise.all([
+      bundleServer(),
+      bundleClient(),
+      bundleIcons(),
+      bundleLocales(),
+    ]);
     fs.copySync(BUNDLER_TMP_DIST_FOLDER, DIST_FOLDER);
   } catch (err) {
     console.error("something went wrong", err);

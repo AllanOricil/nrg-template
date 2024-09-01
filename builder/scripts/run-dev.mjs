@@ -1,6 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+import fs from "fs";
+import path from "path";
+import { execSync } from "child_process";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Path to package.json in the root directory
 const packageJsonPath = path.join(__dirname, "../../package.json");
@@ -22,7 +25,7 @@ try {
   process.chdir("./node-red");
   execSync(`npm link ${packageName}`, { stdio: "inherit" });
   process.chdir("..");
-  execSync("node-red --settings ./node-red/settings.js --userDir ./node-red", {
+  execSync("./node_modules/.bin/node-red --settings ./node-red/settings.js --userDir ./node-red", {
     stdio: "inherit",
   });
 } catch (error) {
