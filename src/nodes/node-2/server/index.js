@@ -4,7 +4,7 @@ import { format } from "util";
 export default class Node2 extends Node {
   constructor(config) {
     super(config);
-    console.log(`constructed type: ${this.type} id: ${this.id}`);
+    this.log(`constructed type: ${this.type} id: ${this.id}`);
   }
 
   static init(RED) {
@@ -26,13 +26,19 @@ export default class Node2 extends Node {
   }
 
   onInput(msg) {
-    console.log("node-2 on input", msg.payload);
-    console.log(format("%j", this.credentials));
+    this.log("node-2 on input", msg.payload);
+    this.log(format("%j", this.credentials));
 
     this.send({ payload: `received input in ${this.type}-${this.id}` });
   }
 
-  onClose() {
-    console.log(`type: ${this.type} id: ${this.id} removed on close`);
+  // NOTE: example showing how to use removed/done
+  onClose(removed, done) {
+    if (removed) {
+      this.log(`type: ${this.type} id: ${this.id} disabled/deleted`);
+    } else {
+      this.log(`type: ${this.type} id: ${this.id} restarted`);
+    }
+    done();
   }
 }

@@ -5,7 +5,7 @@ isOdd("1");
 
 export default {
   category: "custom nodes",
-  color: "#AAAAAA",
+  color: "#FFFFFF",
   defaults: {
     name: { value: "" },
     test: { value: "" },

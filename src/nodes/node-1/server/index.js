@@ -4,7 +4,7 @@ import axios from "axios";
 export default class Node1 extends Node {
   constructor(config) {
     super(config);
-    console.log(`constructed type: ${this.type} id: ${this.id}`);
+    this.log(`constructed type: ${this.type} id: ${this.id}`);
   }
 
   static settings() {
@@ -16,13 +16,10 @@ export default class Node1 extends Node {
     };
   }
 
-  static registrationProperties() {
-    console.log("trying to overwrite");
-  }
-
   // NOTE: example showing how to use async/await
   async onInput(msg, send, done) {
     try {
+      this.log("fetching dogs");
       this.status({
         fill: "blue",
         shape: "ring",
@@ -38,22 +35,24 @@ export default class Node1 extends Node {
       });
       send({ payload: response.data });
       done();
+      this.log("dogs fetched");
     } catch (error) {
       this.status({
         fill: "red",
         shape: "ring",
         text: "error",
       });
-      console.error("Failed to fetch dog image:", error);
+      this.error("Failed to fetch dog image:", error);
       done(error);
     } finally {
       setTimeout(() => {
+        this.log("clearing status");
         this.status({});
       }, 3000);
     }
   }
 
   onClose() {
-    console.log(`type: ${this.type} id: ${this.id} removed on close`);
+    this.log(`type: ${this.type} id: ${this.id} removed on close`);
   }
 }

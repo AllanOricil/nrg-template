@@ -38,7 +38,7 @@
     }
   },
   "devDependencies": {
-    "@allanoricil/node-red-node": "^0.0.0-beta.9",
+    "@allanoricil/node-red-node": "^0.0.0-beta.10",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@semantic-release/changelog": "^6.0.3",
@@ -55,6 +55,7 @@
     "handlebars": "^4.7.8",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
+    "node-red": "^4.0.2",
     "prettier": "^3.2.5",
     "semantic-release": "^23.1.1"
   },
