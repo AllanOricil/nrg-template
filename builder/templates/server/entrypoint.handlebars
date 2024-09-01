@@ -7,6 +7,7 @@ import {{this.name}} from "{{this.path}}";
 export default function (RED) {
 	const NodeRedNodeMixin = createNodeRedNodeMixin(RED);
 	{{#each nodes}}
-	RED.nodes.registerType("{{this.id}}", NodeRedNodeMixin({{this.name}}));
+	let _{{this.name}} = NodeRedNodeMixin({{this.name}}, "{{this.id}}"); 
+	RED.nodes.registerType("{{this.id}}", _{{this.name}}, _{{this.name}}.registrationProperties());
 	{{/each}}
 }

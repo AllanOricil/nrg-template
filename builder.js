@@ -180,7 +180,9 @@ async function bundleClient() {
         minify: true,
         sourcemap: "inline",
         allowOverwrite: true,
-        plugins: [vuePlugin()]
+        plugins: [vuePlugin({
+          production: true
+        })]
       }
     );
 
@@ -190,9 +192,9 @@ async function bundleClient() {
 
     const renderedClientHtml =
       template({
-        NODE: node,
-        HTML: html.trim(),
-        JAVASCRIPT: js.trim(),
+        type: node,
+        html: html.trim(),
+        javascript: js.trim(),
       }) + "\n";
 
     fs.appendFileSync(path.join(
@@ -250,8 +252,8 @@ async function bundleLocales() {
       );
       const renderedHtml =
         template({
-          NODE: node,
-          HTML: html.trim(),
+          type: node,
+          html: html.trim(),
         }) + "\n";
 
       fs.appendFileSync(
