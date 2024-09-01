@@ -1,9 +1,10 @@
 import { Node } from "@allanoricil/node-red-node";
+import { format } from "util";
 
 export default class Node2 extends Node {
   constructor(config) {
     super(config);
-    console.log("constructed node 2");
+    console.log(`constructed type: ${this.type} id: ${this.id}`);
   }
 
   static init(RED) {
@@ -17,12 +18,21 @@ export default class Node2 extends Node {
     });
   }
 
+  static credentials() {
+    return {
+      username: { type: "text" },
+      password: { type: "password" },
+    };
+  }
+
   onInput(msg) {
     console.log("node-2 on input", msg.payload);
-    this.send({ payload: "received input in node 2" });
+    console.log(format("%j", this.credentials));
+
+    this.send({ payload: `received input in ${this.type}-${this.id}` });
   }
 
   onClose() {
-    console.log("node-2 on close");
+    console.log(`type: ${this.type} id: ${this.id} removed on close`);
   }
 }

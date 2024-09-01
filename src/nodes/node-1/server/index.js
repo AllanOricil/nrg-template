@@ -4,7 +4,20 @@ import axios from "axios";
 export default class Node1 extends Node {
   constructor(config) {
     super(config);
-    console.log("constructed node 1");
+    console.log(`constructed type: ${this.type} id: ${this.id}`);
+  }
+
+  static settings() {
+    return {
+      test: {
+        value: "my super settings value",
+        exportable: true,
+      },
+    };
+  }
+
+  static registrationProperties() {
+    console.log("trying to overwrite");
   }
 
   // NOTE: example showing how to use async/await
@@ -38,5 +51,9 @@ export default class Node1 extends Node {
         this.status({});
       }, 3000);
     }
+  }
+
+  onClose() {
+    console.log(`type: ${this.type} id: ${this.id} removed on close`);
   }
 }

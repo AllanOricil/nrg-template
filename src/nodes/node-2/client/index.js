@@ -18,6 +18,10 @@ export default {
   defaults: {
     name: { value: "" },
   },
+  credentials: {
+    username: { type: "text", required: true },
+    password: { type: "password", required: true },
+  },
   inputs: 1,
   outputs: 1,
   align: "left",

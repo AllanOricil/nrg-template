@@ -8,6 +8,7 @@ export default {
   color: "#AAAAAA",
   defaults: {
     name: { value: "" },
+    test: { value: "" },
   },
   inputs: 1,
   outputs: 1,
@@ -20,6 +21,8 @@ export default {
     return this.name || this._("node-1.test.test") || "node-1";
   },
   oneditprepare: function () {
+    const mySetting = RED.settings.node1test;
+    document.getElementById("node-input-test").value = mySetting;
     mountApp(this);
   },
   oneditcancel: function () {
