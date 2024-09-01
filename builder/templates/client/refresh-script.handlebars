@@ -1,0 +1,3 @@
+<script>
+	const socket=new WebSocket("ws://localhost:{{port}}");socket.addEventListener("message",e=>{"refresh"===e.data&&location.reload()}),socket.addEventListener("error",e=>{console.error("WebSocket error observed:",e)});
+</script>
