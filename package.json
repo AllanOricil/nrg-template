@@ -20,8 +20,9 @@
     "format": "prettier **/*.{js,json,html} --ignore-unknown",
     "format:fix": "prettier **/*.{js,json,html} --write --ignore-unknown",
     "prepare": "husky install",
-    "build": "node builder.mjs",
-    "dev": "node ./builder/scripts/run-dev.mjs",
+    "build": "node ./builder/scripts/build.mjs",
+    "watch": "node ./builder/scripts/watch.mjs",
+    "start": "node ./builder/scripts/start.mjs",
     "docker:compose:up": "npm run build && docker-compose -p node-red-custom-node-test up --force-recreate -d && docker exec node-red-custom-node-test sh -c 'cd /data && npm install /node-red-custom-node'",
     "docker:compose:down": "docker-compose -p node-red-custom-node-test down"
   },
@@ -56,6 +57,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "node-red": "^4.0.2",
+    "pkg-dir": "^8.0.0",
     "prettier": "^3.2.5",
     "semantic-release": "^23.1.1"
   },

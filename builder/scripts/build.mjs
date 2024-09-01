@@ -5,48 +5,62 @@ import Handlebars from "handlebars";
 import deepmerge from "deepmerge";
 import * as cheerio from "cheerio";
 import vuePlugin from "esbuild-vue";
+import { packageDirectorySync } from "pkg-dir";
 
-const BUNDLER_FOLDER = "./.node-red-builder";
-const BUNDLER_TMP_FOLDER = path.join(BUNDLER_FOLDER, "tmp");
-const BUNDLER_SERVER_TMP_FOLDER = path.join(BUNDLER_TMP_FOLDER, "server");
-const BUNDLER_SERVER_TMP_SRC_FOLDER = path.join(
-  BUNDLER_SERVER_TMP_FOLDER,
+const PROJECT_ROOT_DIRECTORY = packageDirectorySync();
+
+const BUILDER_CONFIG_FILE = path.resolve(
+  PROJECT_ROOT_DIRECTORY,
+  "nrg.config.mjs"
+);
+const BUILDER_ASSETS_DIRECTORY = path.resolve(
+  PROJECT_ROOT_DIRECTORY,
+  "builder"
+);
+const BUILDER_TEMPLATES = path.resolve(BUILDER_ASSETS_DIRECTORY, "templates");
+const BUILDER_DOT_DIRECTORY = path.resolve(PROJECT_ROOT_DIRECTORY, ".nrg");
+const BUNDLER_TMP_DIRECTORY = path.resolve(BUILDER_DOT_DIRECTORY, "tmp");
+const BUNDLER_SERVER_TMP_DIRECTORY = path.resolve(
+  BUNDLER_TMP_DIRECTORY,
+  "server"
+);
+const BUNDLER_SERVER_TMP_SRC_DIRECTORY = path.resolve(
+  BUNDLER_SERVER_TMP_DIRECTORY,
   "src"
 );
-const BUNDLER_CLIENT_TMP_FOLDER = path.join(BUNDLER_TMP_FOLDER, "client");
-const BUNDLER_CLIENT_TMP_SRC_FOLDER = path.join(
-  BUNDLER_CLIENT_TMP_FOLDER,
+const BUNDLER_CLIENT_TMP_DIRECTORY = path.resolve(
+  BUNDLER_TMP_DIRECTORY,
+  "client"
+);
+const BUNDLER_CLIENT_TMP_SRC_DIRECTORY = path.resolve(
+  BUNDLER_CLIENT_TMP_DIRECTORY,
   "src"
 );
 
-const BUNDLER_TMP_SRC_FOLDER = path.join(BUNDLER_TMP_FOLDER, "src");
-const BUNDLER_TMP_DIST_FOLDER = path.join(BUNDLER_TMP_FOLDER, "dist");
+const BUNDLER_TMP_SRC_DIRECTORY = path.resolve(BUNDLER_TMP_DIRECTORY, "src");
+const BUNDLER_TMP_DIST_DIRECTORY = path.resolve(BUNDLER_TMP_DIRECTORY, "dist");
 
-const SRC_FOLDER = "./src";
-const DIST_FOLDER = "./dist";
-const ASSETS_FOLDER = "./assets";
-const NODES_FOLDER = "./src/nodes";
-const BUILDER = "./builder";
-const TEMPLATES = path.join(BUILDER, "templates");
+const SRC_DIRECTORY = path.resolve(PROJECT_ROOT_DIRECTORY, "src");
+const DIST_DIRECTORY = path.resolve(PROJECT_ROOT_DIRECTORY, "dist");
 
 async function clean() {
   console.log("cleaning up before next build");
-  await fs.remove(DIST_FOLDER);
-  await fs.remove(BUNDLER_TMP_FOLDER);
+  await fs.remove(DIST_DIRECTORY);
+  await fs.remove(BUNDLER_TMP_DIRECTORY);
   console.log("clean up completed successfully");
 }
 
 async function setup() {
   console.log("setting up bundler dir");
-  await fs.mkdirp(BUNDLER_FOLDER);
-  await fs.mkdirp(BUNDLER_TMP_FOLDER);
+  await fs.mkdirp(BUILDER_DOT_DIRECTORY);
+  await fs.mkdirp(BUNDLER_TMP_DIRECTORY);
   console.log("setup complete");
 }
 
 async function processHtml(node) {
   const html = fs.readFileSync(
     path.resolve(
-      BUNDLER_CLIENT_TMP_SRC_FOLDER,
+      BUNDLER_CLIENT_TMP_SRC_DIRECTORY,
       "nodes",
       node,
       "client",
@@ -68,7 +82,7 @@ async function bundleJavascript(config) {
 async function renderServerEntrypoint(nodes) {
   const template = Handlebars.compile(
     fs.readFileSync(
-      path.join(TEMPLATES, "server", "entrypoint.handlebars"),
+      path.join(BUILDER_TEMPLATES, "server", "entrypoint.handlebars"),
       "utf-8"
     )
   );
@@ -88,16 +102,16 @@ async function renderServerEntrypoint(nodes) {
 
 async function bundleServer() {
   console.log("bundling server");
-  fs.mkdirpSync(BUNDLER_SERVER_TMP_FOLDER);
-  fs.copySync(SRC_FOLDER, BUNDLER_SERVER_TMP_SRC_FOLDER);
+  fs.mkdirpSync(BUNDLER_SERVER_TMP_DIRECTORY);
+  fs.copySync(SRC_DIRECTORY, BUNDLER_SERVER_TMP_SRC_DIRECTORY);
 
   const nodes = fs.readdirSync(
-    path.resolve(BUNDLER_SERVER_TMP_SRC_FOLDER, "nodes")
+    path.resolve(BUNDLER_SERVER_TMP_SRC_DIRECTORY, "nodes")
   );
   const severEntrypoint = await renderServerEntrypoint(nodes);
 
   const serverEntrypointPath = path.resolve(
-    BUNDLER_SERVER_TMP_SRC_FOLDER,
+    BUNDLER_SERVER_TMP_SRC_DIRECTORY,
     "index.js"
   );
   fs.writeFileSync(serverEntrypointPath, severEntrypoint, {
@@ -113,7 +127,7 @@ async function bundleServer() {
     // NOTE: this must be true so that class names are preserved.
     // NOTE: this prop doesnt work unless minify = true
     keepNames: true,
-    outfile: path.resolve(BUNDLER_TMP_DIST_FOLDER, "index.js"),
+    outfile: path.resolve(BUNDLER_TMP_DIST_DIRECTORY, "index.js"),
     sourcemap: true,
   });
 
@@ -122,27 +136,31 @@ async function bundleServer() {
 
 async function bundleClient() {
   console.log("bundling client");
-  fs.mkdirpSync(BUNDLER_CLIENT_TMP_FOLDER);
-  fs.copySync(SRC_FOLDER, BUNDLER_CLIENT_TMP_SRC_FOLDER);
+  fs.mkdirpSync(BUNDLER_CLIENT_TMP_DIRECTORY);
+  fs.copySync(SRC_DIRECTORY, BUNDLER_CLIENT_TMP_SRC_DIRECTORY);
 
   const nodes = fs.readdirSync(
-    path.resolve(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes")
+    path.resolve(BUNDLER_CLIENT_TMP_SRC_DIRECTORY, "nodes")
   );
 
   const template = Handlebars.compile(
-    fs.readFileSync(path.join(TEMPLATES, "client", "html.handlebars"), "utf-8")
-  );
-
-  const entryPointTemplate = Handlebars.compile(
     fs.readFileSync(
-      path.join(TEMPLATES, "client", "entrypoint.handlebars"),
+      path.join(BUILDER_TEMPLATES, "client", "html.handlebars"),
       "utf-8"
     )
   );
 
+  const entryPointTemplate = Handlebars.compile(
+    fs.readFileSync(
+      path.join(BUILDER_TEMPLATES, "client", "entrypoint.handlebars"),
+      "utf-8"
+    )
+  );
+
+  const clientHtmlPath = path.join(BUNDLER_TMP_DIST_DIRECTORY, "index.html");
   for (const node of nodes) {
     const jsOutputPath = path.join(
-      BUNDLER_CLIENT_TMP_SRC_FOLDER,
+      BUNDLER_CLIENT_TMP_SRC_DIRECTORY,
       "nodes",
       node,
       "index.js"
@@ -154,14 +172,19 @@ async function bundleClient() {
     });
 
     fs.writeFileSync(
-      path.join(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes", node, "index.js"),
+      path.join(BUNDLER_CLIENT_TMP_SRC_DIRECTORY, "nodes", node, "index.js"),
       renderedJsEntrypoint,
       { encoding: "utf-8" }
     );
 
     await bundleJavascript({
       entryPoints: [
-        path.resolve(BUNDLER_CLIENT_TMP_SRC_FOLDER, "nodes", node, "index.js"),
+        path.resolve(
+          BUNDLER_CLIENT_TMP_SRC_DIRECTORY,
+          "nodes",
+          node,
+          "index.js"
+        ),
       ],
       bundle: true,
       format: "iife",
@@ -190,26 +213,28 @@ async function bundleClient() {
         javascript: js.trim(),
       }) + "\n";
 
-    fs.appendFileSync(
-      path.join(BUNDLER_TMP_DIST_FOLDER, "index.html"),
-      renderedClientHtml,
-      {
-        encoding: "utf-8",
-      }
-    );
+    fs.appendFileSync(clientHtmlPath, renderedClientHtml, {
+      encoding: "utf-8",
+    });
   }
+
+  fs.appendFileSync(
+    clientHtmlPath,
+    '<script>const socket=new WebSocket("ws://localhost:3001");socket.addEventListener("message",e=>{"refresh"===e.data&&location.reload()}),socket.addEventListener("error",e=>{console.error("WebSocket error observed:",e)});</script>',
+    { encoding: "utf-8" }
+  );
 
   console.log("client bundled");
 }
 
 async function bundleIcons() {
   console.log("creating icons dir");
-  const nodes = fs.readdirSync(path.resolve(SRC_FOLDER, "nodes"));
-  const iconsOutput = path.join(BUNDLER_TMP_DIST_FOLDER, "icons");
+  const nodes = fs.readdirSync(path.resolve(SRC_DIRECTORY, "nodes"));
+  const iconsOutput = path.join(BUNDLER_TMP_DIST_DIRECTORY, "icons");
   fs.mkdirpSync(iconsOutput);
   for (const node of nodes) {
     fs.copySync(
-      path.resolve(SRC_FOLDER, "nodes", node, "client", "icons"),
+      path.resolve(SRC_DIRECTORY, "nodes", node, "client", "icons"),
       iconsOutput
     );
   }
@@ -218,13 +243,13 @@ async function bundleIcons() {
 
 async function bundleLocales() {
   console.log("creating locales dir");
-  const nodes = fs.readdirSync(path.resolve(SRC_FOLDER, "nodes"));
-  const localesOutput = path.join(BUNDLER_TMP_DIST_FOLDER, "locales");
+  const nodes = fs.readdirSync(path.resolve(SRC_DIRECTORY, "nodes"));
+  const localesOutput = path.join(BUNDLER_TMP_DIST_DIRECTORY, "locales");
   fs.mkdirpSync(localesOutput);
 
   const template = Handlebars.compile(
     fs.readFileSync(
-      path.join(TEMPLATES, "client", "locale.handlebars"),
+      path.join(BUILDER_TEMPLATES, "client", "locale.handlebars"),
       "utf-8"
     )
   );
@@ -233,7 +258,7 @@ async function bundleLocales() {
 
   for (const node of nodes) {
     const docs = fs.readdirSync(
-      path.resolve(SRC_FOLDER, "nodes", node, "client", "i18n", "docs")
+      path.resolve(SRC_DIRECTORY, "nodes", node, "client", "i18n", "docs")
     );
 
     for (const doc of docs) {
@@ -241,7 +266,7 @@ async function bundleLocales() {
       const localeLanguageOutput = path.join(localesOutput, language);
       fs.mkdirpSync(localeLanguageOutput);
       const html = fs.readFileSync(
-        path.join(SRC_FOLDER, "nodes", node, "client", "i18n", "docs", doc),
+        path.join(SRC_DIRECTORY, "nodes", node, "client", "i18n", "docs", doc),
         { encoding: "utf-8" }
       );
       const renderedHtml =
@@ -260,7 +285,14 @@ async function bundleLocales() {
     }
 
     const dictionaries = fs.readdirSync(
-      path.resolve(SRC_FOLDER, "nodes", node, "client", "i18n", "dictionaries")
+      path.resolve(
+        SRC_DIRECTORY,
+        "nodes",
+        node,
+        "client",
+        "i18n",
+        "dictionaries"
+      )
     );
 
     for (const dictionary of dictionaries) {
@@ -278,7 +310,7 @@ async function bundleLocales() {
       const json = JSON.parse(
         fs.readFileSync(
           path.join(
-            SRC_FOLDER,
+            SRC_DIRECTORY,
             "nodes",
             node,
             "client",
@@ -320,7 +352,7 @@ const main = async () => {
       bundleIcons(),
       bundleLocales(),
     ]);
-    fs.copySync(BUNDLER_TMP_DIST_FOLDER, DIST_FOLDER);
+    fs.copySync(BUNDLER_TMP_DIST_DIRECTORY, DIST_DIRECTORY);
   } catch (err) {
     console.error("something went wrong", err);
     process.exit(1);
