@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { exec, execSync } from "child_process";
+import { spawn } from "child_process";
 import deepmerge from "deepmerge";
 import killPort from "kill-port";
 import detectPort from "detect-port";
@@ -59,21 +59,26 @@ async function killNodeRedProcess(config) {
   }
 }
 
+function buildCommand(debug) {
+  let args = [
+    ...(debug ? ["--inspect"] : []),
+    NODE_RED_EXECUTABLE,
+    "--settings",
+    NODE_RED_SETTINGS_FILE,
+  ];
+
+  return {
+    executable: "node",
+    args,
+  };
+}
+
 async function startNodeRed(config) {
   await killNodeRedProcess(config);
   setupNodeRedDirectory(config);
 
-  const command = `${NODE_RED_EXECUTABLE} --settings ${NODE_RED_SETTINGS_FILE}`;
-  nodeRedProcess = exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Node-RED failed to start: ${error.message}`);
-    }
-    if (stderr) {
-      console.error(`Node-RED stderr: ${stderr}`);
-    }
-    console.log(`Node-RED stdout: ${stdout}`);
-  });
-
+  const { executable, args } = buildCommand(config.debug);
+  nodeRedProcess = spawn(executable, args);
   nodeRedProcess.stdout.on("data", (data) => {
     const message = data.toString().trim();
     console.log(`Node-RED: ${message}`);
@@ -93,7 +98,15 @@ async function startNodeRed(config) {
 
   nodeRedProcess.stderr.on("data", (data) => {
     const message = data.toString().trim();
-    console.error(`Node-RED Error: ${message}`);
+    if (
+      message.includes("Debugger attached") ||
+      message.includes("Debugger ending")
+    ) {
+      // Optionally log or handle debugger messages differently
+      console.log(`Debugging info: ${message}`);
+    } else {
+      console.error(`Node-RED Error: ${message}`);
+    }
   });
 
   if (!wss) {
