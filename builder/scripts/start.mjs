@@ -5,7 +5,7 @@ import { loadConfig } from "./config.mjs";
 
 const main = async () => {
   try {
-    const { config, filepath } = await loadConfig();
+    const { config } = await loadConfig();
     await build(config);
     await startNodeRed(config);
   } catch (err) {
