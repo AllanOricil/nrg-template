@@ -11,7 +11,4 @@ export default {
       ],
     },
   },
-  nodeRed: {
-    uiPort: 2020,
-  },
 };
