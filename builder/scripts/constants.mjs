@@ -52,6 +52,11 @@ export const BUNDLER_TMP_DIST_DIRECTORY = path.resolve(
   "dist"
 );
 
+export const BUNDLER_TMP_DIST_SOURCE_MAP_PATH = path.resolve(
+  BUNDLER_TMP_DIST_DIRECTORY,
+  "index.js.map"
+);
+
 export const SRC_DIRECTORY = path.resolve(PROJECT_ROOT_DIRECTORY, "src");
 export const DIST_DIRECTORY = path.resolve(PROJECT_ROOT_DIRECTORY, "dist");
 

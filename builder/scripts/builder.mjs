@@ -18,6 +18,7 @@ import {
   BUNDLER_CLIENT_TMP_SRC_DIRECTORY,
   BUILDER_TEMPLATES,
   BUNDLER_TMP_DIST_DIRECTORY,
+  BUNDLER_TMP_DIST_SOURCE_MAP_PATH,
 } from "./constants.mjs";
 
 async function clean() {
@@ -77,6 +78,38 @@ async function renderServerEntrypoint(nodes) {
   return result;
 }
 
+function fixServerSourceMapPaths() {
+  if (fs.existsSync(BUNDLER_TMP_DIST_SOURCE_MAP_PATH)) {
+    const sourceMap = JSON.parse(
+      fs.readFileSync(BUNDLER_TMP_DIST_SOURCE_MAP_PATH, { encoding: "utf-8" })
+    );
+
+    sourceMap.sources = sourceMap.sources.map((source) => {
+      let resolvedPath;
+      if (source.startsWith("../../../node_modules")) {
+        resolvedPath = path.resolve(
+          PROJECT_ROOT_DIRECTORY,
+          source.replace("../../../", "../")
+        );
+      }
+
+      if (source.startsWith("../server/src")) {
+        resolvedPath = path.resolve(
+          PROJECT_ROOT_DIRECTORY,
+          source.replace("../server", "../")
+        );
+      }
+      return path.relative(PROJECT_ROOT_DIRECTORY, resolvedPath);
+    });
+
+    fs.writeFileSync(
+      BUNDLER_TMP_DIST_SOURCE_MAP_PATH,
+      JSON.stringify(sourceMap),
+      { encoding: "utf-8" }
+    );
+  }
+}
+
 async function bundleServer(config) {
   console.log("bundling server");
   fs.mkdirpSync(BUNDLER_SERVER_TMP_DIRECTORY);
@@ -86,12 +119,12 @@ async function bundleServer(config) {
     path.resolve(BUNDLER_SERVER_TMP_SRC_DIRECTORY, "nodes")
   );
 
-  const severEntrypoint = await renderServerEntrypoint(nodes);
+  const serverEntrypoint = await renderServerEntrypoint(nodes);
   const serverEntrypointPath = path.resolve(
     BUNDLER_SERVER_TMP_SRC_DIRECTORY,
     "index.js"
   );
-  fs.writeFileSync(serverEntrypointPath, severEntrypoint, {
+  fs.writeFileSync(serverEntrypointPath, serverEntrypoint, {
     encoding: "utf-8",
   });
 
@@ -102,6 +135,7 @@ async function bundleServer(config) {
   };
 
   await bundleJavascript(bundlerConfig);
+  fixServerSourceMapPaths();
 
   console.log("server bundled");
 }
