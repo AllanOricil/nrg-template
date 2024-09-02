@@ -140,7 +140,7 @@ async function bundleServer(config) {
   console.log("server bundled");
 }
 
-async function bundleClient(config, watch) {
+async function bundleClient(config) {
   console.log("bundling client");
   fs.mkdirpSync(BUNDLER_CLIENT_TMP_DIRECTORY);
   fs.copySync(SRC_DIRECTORY, BUNDLER_CLIENT_TMP_SRC_DIRECTORY);
@@ -212,8 +212,8 @@ async function bundleClient(config, watch) {
     });
   }
 
-  if (watch) {
-    // TODO: add this to the rendered tempalte only if --watch is set
+  if (config.watch?.port) {
+    console.log(`attach wss connection script using port ${config.watch.port}`);
     const refreshScriptTemplate = Handlebars.compile(
       fs.readFileSync(
         path.resolve(BUILDER_TEMPLATES, "client", "refresh-script.handlebars"),
@@ -346,12 +346,12 @@ async function bundleLocales(config) {
   console.log("locales dir created");
 }
 
-async function build(config, watch) {
+async function build(config) {
   await clean();
   await setup();
   await Promise.all([
     bundleServer(config),
-    bundleClient(config, watch),
+    bundleClient(config),
     bundleIcons(config),
     bundleLocales(config),
   ]);

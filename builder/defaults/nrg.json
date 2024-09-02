@@ -1,5 +1,25 @@
 {
   "version": "0.0.0",
+  "debug": false,
+  "watch": {
+    "port": null,
+    "paths": [
+      "src",
+      "package.json",
+      "nrg.config.js",
+      "nrg.config.mjs",
+      "nrg.config.cjs",
+      ".nrgrc.json",
+      ".nrgrc.js",
+      ".nrgrc.cjs",
+      ".nrgrc.mjs",
+      ".config/nrgrc",
+      ".config/nrgrc.json",
+      ".config/nrgrc.js",
+      ".config/nrgrc.cjs",
+      ".config/nrgrc.mjs"
+    ]
+  },
   "build": {
     "server": {
       "bundle": true,
@@ -19,9 +39,6 @@
       "sourcemap": "inline",
       "allowOverwrite": true
     }
-  },
-  "watch": {
-    "port": 3000
   },
   "nodeRed": {
     "flowFile": "flows.json",
