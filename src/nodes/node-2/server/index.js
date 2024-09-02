@@ -7,12 +7,12 @@ export default class Node2 extends Node {
     this.log(`constructed type: ${this.type} id: ${this.id}`);
   }
 
-  static init(RED) {
-    RED.httpAdmin.get("/test", async function (req, res) {
+  static init() {
+    Node.RED.httpAdmin.get("/test", async function (req, res) {
       try {
         res.status(200).json({ message: "success" });
       } catch (err) {
-        RED.log.error("ERROR:" + err.message);
+        Node.RED.log.error("ERROR:" + err.message);
         res.status(500).json({ message: "something unknown happened" });
       }
     });
