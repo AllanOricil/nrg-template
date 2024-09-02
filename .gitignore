@@ -43,13 +43,7 @@ Thumbs.db
 *.mov
 *.wmv
 
-node-red/.npm
-node-red/node_modules
-node-red/.config.*
-node-red/.flows.json.backup
-node-red/lib/flows
-node-red/flows_cred.json
-node-red/.flows_cred.json.backup
+node-red
 
 .nrg
 
