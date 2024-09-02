@@ -60,12 +60,12 @@ export const NODE_RED_EXECUTABLE = path.resolve(
   "node_modules/.bin/node-red"
 );
 
-export const NODE_RED_SETTINGS_FILE = path.resolve(
-  PROJECT_ROOT_DIRECTORY,
-  "node-red/settings.js"
-);
-
 export const NODE_RED_DIRECTORY = path.resolve(
   PROJECT_ROOT_DIRECTORY,
   "node-red"
+);
+
+export const NODE_RED_SETTINGS_FILE = path.resolve(
+  NODE_RED_DIRECTORY,
+  "settings.js"
 );

@@ -5,9 +5,8 @@ import deepmerge from "deepmerge";
 import killPort from "kill-port";
 import detectPort from "detect-port";
 import WebSocket from "ws";
-
 import {
-  DIST_DIRECTORY,
+  PROJECT_ROOT_DIRECTORY,
   NODE_RED_EXECUTABLE,
   NODE_RED_SETTINGS_FILE,
   NODE_RED_DIRECTORY,
@@ -38,7 +37,8 @@ function setupNodeRedDirectory(config) {
 
   const nodeRedSettings = deepmerge(config.nodeRed, {
     userDir: NODE_RED_DIRECTORY,
-    nodesDir: DIST_DIRECTORY,
+    // NOTE: this works, but it break locales https://github.com/node-red/node-red/issues/1604
+    nodesDir: PROJECT_ROOT_DIRECTORY,
   });
 
   fs.writeFileSync(
