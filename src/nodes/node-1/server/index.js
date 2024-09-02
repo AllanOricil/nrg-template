@@ -33,7 +33,8 @@ export default class Node1 extends Node {
         shape: "dot",
         text: "success",
       });
-      send({ payload: response.data });
+      msg.payload = response.data;
+      send(msg);
       done();
       this.log("dogs fetched");
     } catch (error) {
