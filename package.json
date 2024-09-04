@@ -14,16 +14,14 @@
     "esbuild"
   ],
   "scripts": {
+    "build": "./node_modules/.bin/nrg build",
+    "watch": "./node_modules/.bin/nrg dev -w -o",
+    "start": "./node_modules/.bin/nrg dev -o",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier **/*.{js,json,html} --ignore-unknown",
     "format:fix": "prettier **/*.{js,json,html} --write --ignore-unknown",
-    "prepare": "husky install",
-    "build": "node ./builder/scripts/build.mjs",
-    "watch": "node ./builder/scripts/watch.mjs",
-    "start": "node ./builder/scripts/start.mjs",
-    "docker:compose:up": "npm run build && docker-compose -p node-red-custom-node-test up --force-recreate -d && docker exec node-red-custom-node-test sh -c 'cd /data && npm install /node-red-custom-node'",
-    "docker:compose:down": "docker-compose -p node-red-custom-node-test down"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{json, html}": "prettier --write --ignore-unknown",
@@ -37,34 +35,26 @@
       "custom-nodes": "dist/index.js"
     }
   },
+  "dependencies": {
+    "axios": "^1.7.5",
+    "is-odd": "^3.0.1"
+  },
   "devDependencies": {
-    "@allanoricil/node-red-node": "^0.0.0-beta.10",
+    "@allanoricil/nrg-cli": "^0.0.0-beta.3",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/release-notes-generator": "^12.1.0",
-    "cheerio": "^1.0.0",
-    "deepmerge": "^4.3.1",
-    "detect-port": "^1.6.1",
-    "esbuild": "^0.21.4",
     "esbuild-vue": "^1.2.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
-    "handlebars": "^4.7.8",
     "husky": "^8.0.3",
-    "kill-port": "^2.0.1",
-    "lilconfig": "^3.1.2",
     "lint-staged": "^15.2.0",
     "node-red": "^4.0.2",
-    "pkg-dir": "^8.0.0",
     "prettier": "^3.2.5",
     "semantic-release": "^23.1.1"
-  },
-  "dependencies": {
-    "axios": "^1.7.5",
-    "is-odd": "^3.0.1"
   }
 }

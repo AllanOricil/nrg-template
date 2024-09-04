@@ -1,6 +1,6 @@
-import vuePlugin from "esbuild-vue";
+const vuePlugin = require("esbuild-vue");
 
-export default {
+module.exports = {
   version: "0.0.0",
   build: {
     client: {
