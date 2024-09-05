@@ -1,6 +1,6 @@
 {
   "name": "@allanoricil/node-red-node-es-template",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "description": "A Node-RED project built using the nrg cli.",
   "main": "dist/index.js",
   "author": {
