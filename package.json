@@ -47,7 +47,7 @@
     "is-odd": "^3.0.1"
   },
   "devDependencies": {
-    "@allanoricil/nrg-cli": "^0.0.0-beta.5",
+    "@allanoricil/nrg-cli": "0.0.0-beta.7",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@semantic-release/changelog": "^6.0.3",
