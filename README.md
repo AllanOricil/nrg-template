@@ -4,6 +4,8 @@
 
 ## 📁 Directory Structure
 
+This project is built using the `nrg` cli.
+
 ```bash
 node-red-node-es-template/
 └── src/
@@ -62,18 +64,14 @@ node-red-node-es-template/
 
 ## 💻 Dev Environment Requirements
 
-| Tool           | Version |
-| -------------- | ------- |
-| node           | >= 18   |
-| npm            | >= 10   |
-| docker         | >= 26   |
-| docker compose | >= 2    |
+| Tool | Version |
+| ---- | ------- |
+| node | >= 18   |
+| npm  | >= 10   |
 
 ## 📖 How to test your node
 
 1. open a terminal in the root of this project
 2. run `npm install`
-3. run `npm run docker:compose:up`
-4. open your browser
-5. navigate to `http://localhost:1880`
-6. verify that these nodes are available in the pallete
+3. run `npm run start` and wait for your browser to open
+4. verify that 4 nodes are available in the pallete, in the "custom nodes" group.

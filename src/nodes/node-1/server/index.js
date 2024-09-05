@@ -4,7 +4,12 @@ import axios from "axios";
 export default class Node1 extends Node {
   constructor(config) {
     super(config);
-    this.log(`constructed type: ${this.type} id: ${this.id}`);
+    this.log(`constructed type: ${Node1.type} id: ${this.id}`);
+  }
+
+  static async init() {
+    const response = await axios.get("https://dog.ceo/api/breeds/image/random");
+    this.RED.log.debug(response.data);
   }
 
   static settings() {
@@ -54,6 +59,6 @@ export default class Node1 extends Node {
   }
 
   onClose() {
-    this.log(`type: ${this.type} id: ${this.id} removed on close`);
+    this.log(`type: ${Node1.type} id: ${this.id} removed on close`);
   }
 }

@@ -1,10 +1,10 @@
 import { Node } from "@allanoricil/node-red-node";
 import axios from "axios";
 
-export default class Node1 extends Node {
+export default class Node3 extends Node {
   constructor(config) {
     super(config);
-    this.log(`constructed type: ${this.type} id: ${this.id}`);
+    this.log(`constructed type: ${Node3.type} id: ${this.id}`);
   }
 
   static settings() {
@@ -17,8 +17,8 @@ export default class Node1 extends Node {
   }
 
   onInput(msg, send, done) {
-    this.log(`Hi! from type: ${this.type} id: ${this.id}`);
-    msg.payload = `Hi! from type: ${this.type} id: ${this.id}`;
+    this.log(`Hi! from type: ${Node3.type} id: ${this.id}`);
+    msg.payload = `Hi! from type: ${Node3.type} id: ${this.id}`;
     send(msg);
     done();
   }
@@ -26,7 +26,7 @@ export default class Node1 extends Node {
   // NOTE: example showing how to use async/await
   async onClose(done) {
     try {
-      this.log(`closing type: ${this.type} id: ${this.id}`);
+      this.log(`closing type: ${Node3.type} id: ${this.id}`);
       this.log("fetching dog");
       const response = await axios.get(
         "https://dog.ceo/api/breeds/image/random",

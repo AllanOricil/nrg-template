@@ -1,18 +1,24 @@
 import { Node } from "@allanoricil/node-red-node";
 import { format } from "util";
+import axios from "axios";
 
 export default class Node2 extends Node {
   constructor(config) {
     super(config);
-    this.log(`constructed type: ${this.type} id: ${this.id}`);
+    this.log(`constructed type: ${Node2.type} id: ${this.id}`);
   }
 
   static init() {
-    Node.RED.httpAdmin.get("/test", async function (req, res) {
+    axios.get("https://dog.ceo/api/breeds/image/random").then((result) => {
+      this.RED.log.debug(`[${this.type}]`);
+      this.RED.log.debug(result.data);
+    });
+
+    this.RED.httpAdmin.get("/test", async function (req, res) {
       try {
         res.status(200).json({ message: "success" });
       } catch (err) {
-        Node.RED.log.error("ERROR:" + err.message);
+        this.RED.log.error("ERROR:" + err.message);
         res.status(500).json({ message: "something unknown happened" });
       }
     });
@@ -29,15 +35,15 @@ export default class Node2 extends Node {
     this.log("node-2 on input", msg.payload);
     this.log(format("%j", this.credentials));
 
-    this.send({ payload: `received input in ${this.type}-${this.id}` });
+    this.send({ payload: `received input in ${Node2.type}-${this.id}` });
   }
 
   // NOTE: example showing how to use removed/done
   onClose(removed, done) {
     if (removed) {
-      this.log(`type: ${this.type} id: ${this.id} disabled/deleted`);
+      this.log(`type: ${Node2.type} id: ${this.id} disabled/deleted`);
     } else {
-      this.log(`type: ${this.type} id: ${this.id} restarted`);
+      this.log(`type: ${Node2.type} id: ${this.id} restarted`);
     }
     done();
   }

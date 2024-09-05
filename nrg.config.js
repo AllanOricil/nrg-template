@@ -11,4 +11,11 @@ module.exports = {
       ],
     },
   },
+  nodeRed: {
+    logging: {
+      console: {
+        level: "debug",
+      },
+    },
+  },
 };
