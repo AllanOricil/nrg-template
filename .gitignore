@@ -9,6 +9,7 @@ dist/
 *.py[cod]
 
 # Log files
+logs
 *.log
 
 # Package files
