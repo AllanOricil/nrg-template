@@ -4,6 +4,8 @@ export default class Node5 extends Node {
   constructor(config) {
     super(config);
     this.log(`constructed type: ${Node5.type} id: ${this.id}`);
+
+    this.test = config.test;
   }
 
   // NOTE: example showing how to use context

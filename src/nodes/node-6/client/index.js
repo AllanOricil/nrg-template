@@ -7,13 +7,13 @@ export default {
   },
   inputs: 1,
   outputs: 1,
-  icon: "icon-5.png",
+  icon: "icon-6.png",
   align: "left",
   paletteLabel: function () {
-    return this.name || this._("node-5.name") || "node-5";
+    return this.name || this._("node-6.name") || "node-6";
   },
   label: function () {
-    return this.name || this._("node-5.name") || "node-5";
+    return this.name || this._("node-6.name") || "node-6";
   },
   oneditprepare: function () {},
   oneditcancel: function () {},

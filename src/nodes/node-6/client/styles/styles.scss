@@ -1,0 +1,44 @@
+@import "../../../../global-styles/brand";
+
+.form-container {
+  .form-title {
+    font-size: 1.75rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 0.5rem;
+      color: $primary-color;
+    }
+  }
+
+  .form-row {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+    // test
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: $border-focus-color;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($border-focus-color, 0.1);
+      }
+    }
+  }
+}
