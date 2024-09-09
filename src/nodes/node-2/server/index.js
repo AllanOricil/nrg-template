@@ -6,6 +6,8 @@ export default class Node2 extends Node {
   constructor(config) {
     super(config);
     this.log(`constructed type: ${Node2.type} id: ${this.id}`);
+
+    this.log(format("%j", this.credentials));
   }
 
   static init() {
