@@ -10,9 +10,9 @@ export default class Node5 extends Node {
 
   // NOTE: example showing how to use context
   onInput(msg, send, done) {
-    const contextRandomValue = this.nodeContext.get("random-values") || [];
+    const contextRandomValue = this.context().get("random-values") || [];
     contextRandomValue.push(Math.random());
-    this.nodeContext.set("random-values", contextRandomValue);
+    this.context().set("random-values", contextRandomValue);
 
     const flowContextRandomValues = this.flowContext.get("random-values") || [];
     flowContextRandomValues.push(Math.random());

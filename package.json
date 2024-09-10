@@ -2,7 +2,6 @@
   "name": "@allanoricil/node-red-node-es-template",
   "version": "2.0.0",
   "description": "A Node-RED project built using the nrg cli.",
-  "main": "dist/index.js",
   "author": {
     "name": "AllanOricil",
     "email": "allanoricil@duck.com"
@@ -41,11 +40,11 @@
   },
   "node-red": {
     "nodes": {
-      "custom-nodes": "dist/index.js"
+      "nodes": "dist/index.js"
     }
   },
   "dependencies": {
-    "@allanoricil/nrg-cli": "^0.0.0-beta.17",
+    "@allanoricil/nrg-cli": "^0.0.0-beta.18",
     "axios": "^1.7.5",
     "is-odd": "^3.0.1"
   },
