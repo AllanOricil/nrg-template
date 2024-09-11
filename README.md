@@ -27,7 +27,7 @@ node-red-node-es-template/
         │       └── index.js
         └── node-2/
             ├── client/
-            │   ├── locaes/
+            │   ├── locales/
             │   │   ├── labels/
             │   │   │   ├── de.json
             │   │   │   └── en-US.json
