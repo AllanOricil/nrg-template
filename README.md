@@ -12,8 +12,8 @@ node-red-node-es-template/
     └── nodes/
         ├── node-1/
         │   ├── client/
-        │   │   ├── i18n/
-        │   │   │   ├── dictionaries/
+        │   │   ├── locales/
+        │   │   │   ├── labels/
         │   │   │   │   ├── de.json
         │   │   │   │   └── en-US.json
         │   │   │   └── docs/
@@ -27,8 +27,8 @@ node-red-node-es-template/
         │       └── index.js
         └── node-2/
             ├── client/
-            │   ├── i18n/
-            │   │   ├── dictionaries/
+            │   ├── locaes/
+            │   │   ├── labels/
             │   │   │   ├── de.json
             │   │   │   └── en-US.json
             │   │   └── docs/
