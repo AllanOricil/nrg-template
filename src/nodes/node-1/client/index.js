@@ -21,7 +21,7 @@ export default {
     return this.name || this._("node-1.test.test") || "node-1";
   },
   oneditprepare: function () {
-    const mySetting = RED.settings.node1test;
+    const mySetting = RED.settings.node1Test;
     document.getElementById("node-input-test").value = mySetting;
     mountApp(this);
   },
