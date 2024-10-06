@@ -1,4 +1,4 @@
-import { Node } from "@allanoricil/node-red-node";
+import { Node } from "@allanoricil/nrg-nodes";
 import axios from "axios";
 
 export default class Node1 extends Node {

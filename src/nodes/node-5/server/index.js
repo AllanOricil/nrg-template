@@ -1,4 +1,4 @@
-import { Node } from "@allanoricil/node-red-node";
+import { Node } from "@allanoricil/nrg-nodes";
 
 export default class Node5 extends Node {
   constructor(config) {
