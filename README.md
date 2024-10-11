@@ -5,7 +5,7 @@
 
 
 
-# node-red-node-esm-template
+# nrg-template
 
 This project illustrates the utilization of the `nrg` CLI for the development of Node-RED nodes.
 
