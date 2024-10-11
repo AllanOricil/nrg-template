@@ -80,8 +80,7 @@ node-red-node-es-template/
 
 1. open a terminal in the root of this project
 2. run `npm install`
-3. run `npm run start` and wait for your browser to open
-4. verify that 4 nodes are available in the pallete, in the "custom nodes" group.
+3. run `npm run start` and wait for your browser to open.
 
 ## 📖 Other commands
 
