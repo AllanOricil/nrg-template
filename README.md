@@ -14,7 +14,7 @@ This project illustrates the utilization of the `nrg` CLI for the development of
 This project is built using the `nrg` cli.
 
 ```bash
-node-red-node-es-template/
+nrg-template/
 └── src/
     └── nodes/
         ├── node-1/
@@ -52,7 +52,7 @@ node-red-node-es-template/
 ### dist
 
 ```bash
-node-red-node-es-template/
+nrg-template/
 └── dist/
     ├── icons/
     │   ├── icon-1.png
