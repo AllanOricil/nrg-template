@@ -29,7 +29,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier **/*.{js,json,html} --ignore-unknown",
     "format:fix": "prettier **/*.{js,json,html} --write --ignore-unknown",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest"
   },
   "lint-staged": {
     "**/*.{json, html}": "prettier --write --ignore-unknown",
@@ -48,7 +49,7 @@
     "is-odd": "^3.0.1"
   },
   "devDependencies": {
-    "@allanoricil/nrg-cli": "^2.0.0",
+    "@allanoricil/nrg-cli": "^2.2.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@semantic-release/changelog": "^6.0.3",
@@ -56,13 +57,16 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^12.1.0",
+    "@vitejs/plugin-vue": "^5.1.4",
     "esbuild-vue": "^1.2.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.0",
+    "node-red-node-test-helper": "^0.3.4",
     "prettier": "^3.2.5",
-    "semantic-release": "^23.1.1"
+    "semantic-release": "^23.1.1",
+    "vitest": "^2.1.3"
   }
 }
