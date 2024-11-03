@@ -25,7 +25,7 @@
     "start": "nrg dev -o",
     "start:debug": "nrg dev -o -d",
     "start:prod": "nrg dev -o -d -e prod",
-    "start:test": "nrg dev",
+    "start:test": "nrg dev -e prod",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier **/*.{js,json,html} --ignore-unknown",
