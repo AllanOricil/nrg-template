@@ -34,6 +34,6 @@ module.exports = defineConfig({
   webServer: {
     command: "npm run start:test",
     url: nodeRedEditor,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
   },
 });
