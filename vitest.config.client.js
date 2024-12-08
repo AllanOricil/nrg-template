@@ -1,7 +1,9 @@
 import { defineConfig } from "vitest/config";
+import vue from "@vitejs/plugin-vue2";
 import path from "path";
 
 export default defineConfig({
+  plugins: [vue()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -10,15 +12,14 @@ export default defineConfig({
   },
   test: {
     name: "unit",
-    include: ["test/unit/nodes/**/*.{test,spec}.js"],
+    include: ["tests/unit/nodes/**/client/*.{test,spec}.js"],
     globals: true,
-    environment: "node",
-    reporters: ["html"],
+    environment: "jsdom",
     coverage: {
-      enabled: true,
       provider: "istanbul",
-      reportsDirectory: "./coverage",
-      reporter: ["html"],
+      enabled: true,
+      include: ["src/nodes/**/client/**/*"],
+      reportsDirectory: "./coverage/client",
     },
   },
 });

@@ -28,8 +28,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Test
-        run: npm run test
+      - name: Test Server
+        run: npm run test:unit:server:coverage
+
+      - name: Test Client
+        run: npm run test:unit:client:coverage
 
       - name: Build
         run: npm run build

@@ -13,6 +13,7 @@ module.exports = defineConfig({
   use: {
     baseURL: nodeRedEditor,
     trace: "on-first-retry",
+    screenshot: "only-on-failure",
     headless: true,
   },
   projects: [
@@ -32,7 +33,7 @@ module.exports = defineConfig({
     },
   ],
   webServer: {
-    command: "npm run start:test",
+    command: "npm run test:start",
     url: nodeRedEditor,
     reuseExistingServer: true,
   },
