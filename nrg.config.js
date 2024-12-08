@@ -12,6 +12,10 @@ module.exports = {
     },
   },
   nodeRed: {
+    paletteCategories: ["custom nodes"],
+    editorTheme: {
+      tours: false,
+    },
     logging: {
       console: {
         level: "debug",

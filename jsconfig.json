@@ -6,7 +6,8 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@nodes/": ["./src/nodes"]
+      "@/*": ["src/*"],
+      "@/nodes/*": ["src/nodes/*"]
     }
   },
   "exclude": ["node_modules"],

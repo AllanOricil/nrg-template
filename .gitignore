@@ -48,3 +48,10 @@ node-red
 
 .nrg
 
+coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+tests-examples
